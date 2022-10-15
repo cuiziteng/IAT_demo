@@ -27,7 +27,7 @@ def dark_inference(img):
 
     transform = Compose([
         ToTensor(), 
-        Scale(512),
+        Scale(384),
         Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)), 
         ConvertImageDtype(torch.float) 
     ])
@@ -48,7 +48,7 @@ def exposure_inference(img):
 
     transform = Compose([
         ToTensor(), 
-        Scale(512),
+        Scale(384),
         ConvertImageDtype(torch.float) 
     ])
     input_img = transform(img)
