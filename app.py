@@ -78,7 +78,7 @@ with demo:
         with gr.Row():
             exposure_example_images = gr.Dataset(
                 components=[input_image], 
-                samples=[['exposure_imgs/1.jpg'], ['exposure_imgs/2.jpg'], ['exposure_imgs/3.jpg']]
+                samples=[['exposure_imgs/1.jpg'], ['exposure_imgs/2.jpg'], ['exposure_imgs/3.jpeg']]
             )
 
     gr.Markdown(
