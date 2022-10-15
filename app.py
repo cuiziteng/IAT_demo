@@ -2,7 +2,7 @@ import os
 
 import torch
 import torch.nn.functional as F
-from torchvision.transforms import Compose, ToTensor, Normalize, ConvertImageDtype
+from torchvision.transforms import Compose, ToTensor, Scale, Normalize, ConvertImageDtype
 
 import numpy as np
 import cv2
@@ -27,6 +27,7 @@ def dark_inference(img):
 
     transform = Compose([
         ToTensor(), 
+        Scale(512),
         Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)), 
         ConvertImageDtype(torch.float) 
     ])
@@ -47,6 +48,7 @@ def exposure_inference(img):
 
     transform = Compose([
         ToTensor(), 
+        Scale(512),
         ConvertImageDtype(torch.float) 
     ])
     input_img = transform(img)
