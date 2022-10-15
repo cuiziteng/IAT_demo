@@ -23,14 +23,17 @@ def dark_inference(img):
     state_dict = torch.load(checkpoint_file_path, map_location='cpu')
     model.load_state_dict(state_dict)
     model.eval()
+    print(f'Load model from {checkpoint_file_path}')
 
     transform = Compose([
         ToTensor(), 
         Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)), 
         ConvertImageDtype(torch.float) 
     ])
+    input_img = transform(img)
+    print(f'Image shape: {input_img.shape}')
 
-    enhanced_img = model(transform(img).unsqueeze(0))
+    enhanced_img = model(input_img.unsqueeze(0))
     return enhanced_img[0].permute(1, 2, 0).detach().numpy()
 
 
@@ -40,13 +43,16 @@ def exposure_inference(img):
     state_dict = torch.load(checkpoint_file_path, map_location='cpu')
     model.load_state_dict(state_dict)
     model.eval()
+    print(f'Load model from {checkpoint_file_path}')
 
     transform = Compose([
         ToTensor(), 
         ConvertImageDtype(torch.float) 
     ])
+    input_img = transform(img)
+    print(f'Image shape: {input_img.shape}')
 
-    enhanced_img = model(transform(img).unsqueeze(0))
+    enhanced_img = model(input_img.unsqueeze(0))
     return enhanced_img[0].permute(1, 2, 0).detach().numpy()
 
 
